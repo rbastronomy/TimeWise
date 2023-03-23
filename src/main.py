@@ -21,7 +21,16 @@ Gatito = Gato("Gato", 4)
 Gatito.Sonido()
 """
 import flet as ft
+from database.operacion import sumar, restar
+import pandas as pd
+import os
+"""
 def main(page: ft.Page):
+
+    t = ft.Text(value = "Hola mundo", color = "green")
+    page.controls.append(t)
+    page.update()
+
     page.title = "Ejemplo Fleto"
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     txt_number = ft.TextField(value="0", text_align= ft.TextAlign.RIGHT, width = 100)
@@ -44,3 +53,8 @@ def main(page: ft.Page):
     )
 #ft.app(target = main)
 ft.app(target = main, view = ft.WEB_BROWSER)
+"""
+
+df = pd.read_excel('Libro1.xlsx')
+
+print(df.head())
