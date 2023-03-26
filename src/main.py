@@ -36,25 +36,26 @@ print(df.head())
 def opcion1():
     print("Seleccionaste la opción 1")
 
-def opcion2():
-    print("Seleccionaste la opción 2")
-
-def opcion3():
-    print("Seleccionaste la opción 3")
-
+def salida():
+    exit()
 # Creación de la ventana y los elementos
 ventana = tk.Tk()
+
+menu = tk.Menu(ventana)
 
 etiqueta = tk.Label(ventana, text="Selecciona una opción:")
 etiqueta.pack()
 
-boton1 = tk.Button(ventana, text="Opción 1", command=opcion1)
-boton1.pack()
+opcion_menu1 = tk.Menu(menu, tearoff=0)
+opcion_menu1.add_command(label="Opcion 1", command=opcion1)
 
-boton2 = tk.Button(ventana, text="Opción 2", command=opcion2)
-boton2.pack()
+menu.add_cascade(label="Menu", menu=opcion_menu1)
 
-boton3 = tk.Button(ventana, text="Opción 3", command=opcion3)
-boton3.pack()
+ventana.config(menu=menu)
+#boton1 = tk.Button(ventana, text="Opción 1", command=opcion1)
+#boton1.pack()
+
+boton4 = tk.Button(ventana, text="Salir", command=salida)
+boton4.pack()
 
 ventana.mainloop()
