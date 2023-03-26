@@ -1,4 +1,4 @@
-"""
+""" orientado a objetos
 print("Hola Mundo")
 
 class Animal:
@@ -20,41 +20,41 @@ Animalia.Sonido()
 Gatito = Gato("Gato", 4)
 Gatito.Sonido()
 """
-import flet as ft
-from database.operacion import sumar, restar
-import pandas as pd
-import os
-"""
-def main(page: ft.Page):
+from database.operacion import sumar, restar #ejemplo de importar funciones de otro archivo
+import pandas as pd #para el excel
+import tkinter as tk #para la interfaz grafica
+import os #para acceder y manipular archivos
 
-    t = ft.Text(value = "Hola mundo", color = "green")
-    page.controls.append(t)
-    page.update()
-
-    page.title = "Ejemplo Fleto"
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
-    txt_number = ft.TextField(value="0", text_align= ft.TextAlign.RIGHT, width = 100)
-
-    def minus_click(e):
-        txt_number.value = str(int(txt_number.value) - 1)
-        page.update()
-    def plus_click(e):
-        txt_number.value = str(int(txt_number.value) + 1)
-        page.update()
-    page.add(
-        ft.Row(
-            [
-                ft.IconButton(ft.icons.REMOVE, on_click = minus_click),
-                txt_number,
-                ft.IconButton(ft.icons.ADD, on_click = plus_click),
-            ],
-            alignment = ft.MainAxisAlignment.CENTER,
-        )
-    )
-#ft.app(target = main)
-ft.app(target = main, view = ft.WEB_BROWSER)
-"""
-
+### Leer excel
 df = pd.read_excel('Libro1.xlsx')
 
 print(df.head())
+###
+
+
+# Funciones que se llaman al seleccionar cada opción
+def opcion1():
+    print("Seleccionaste la opción 1")
+
+def opcion2():
+    print("Seleccionaste la opción 2")
+
+def opcion3():
+    print("Seleccionaste la opción 3")
+
+# Creación de la ventana y los elementos
+ventana = tk.Tk()
+
+etiqueta = tk.Label(ventana, text="Selecciona una opción:")
+etiqueta.pack()
+
+boton1 = tk.Button(ventana, text="Opción 1", command=opcion1)
+boton1.pack()
+
+boton2 = tk.Button(ventana, text="Opción 2", command=opcion2)
+boton2.pack()
+
+boton3 = tk.Button(ventana, text="Opción 3", command=opcion3)
+boton3.pack()
+
+ventana.mainloop()
