@@ -1,0 +1,7 @@
+Profesor,RUT,Fecha de nacimiento,Materia,Código,Paralelo,Sala,Créditos,Horas cátedra,Modalidad,Cupo
+Juan Pérez,12345678-9,15/06/1975,Introducción a la Programación,PROG101,A,101,5,3,presencial,30
+Juan Pérez,12345678-9,15/06/1975,Programación Avanzada,PROG201,B,201,6,4,mixto,25
+Juan Pérez,12345678-9,15/06/1975,Bases de Datos,BBDD101,A,202,4,2,online,40
+Ana Fernández,98765432-1,10/02/1980,Redes de Computadores,RC101,A,102,5,3,presencial,30
+Ana Fernández,98765432-1,10/02/1980,Programación Orientada a Objetos,POO201,A,201,6,4,presencial,25
+Ana Fernández,98765432-1,10/02/1980,Sistemas Operativos,SO101,B,202,4,2,online,40

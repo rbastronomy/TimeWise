@@ -31,64 +31,48 @@ df = pd.read_excel('Libro1.xlsx')
 
 print(df.head())
 ###
-
-
-# Funciones que se llaman al seleccionar cada opción
-def opcion1():
-    print("Seleccionaste la opción 1")
-
-def salida():
-    exit()
-# Creación de la ventana y los elementos
-ventana = tk.Tk()
-
-menu = tk.Menu(ventana)
-
-etiqueta = tk.Label(ventana, text="Selecciona una opción:")
-etiqueta.pack()
-
-opcion_menu1 = tk.Menu(menu, tearoff=0)
-opcion_menu1.add_command(label="Opcion 1", command=opcion1)
-
-menu.add_cascade(label="Menu", menu=opcion_menu1)
-
-ventana.config(menu=menu)
-#boton1 = tk.Button(ventana, text="Opción 1", command=opcion1)
-#boton1.pack()
-
-boton4 = tk.Button(ventana, text="Salir", command=salida)
-boton4.pack()
-
-ventana.mainloop()
 """
 import tkinter as tk
 from tkinter import ttk
+"""
+# Pack a big frame so, it behaves like the window background
+big_frame = ttk.Frame(root)
+big_frame.pack(fill="both", expand=True)
 
+# Set the initial theme
+root.tk.call("source", "azure.tcl")
+root.tk.call("set_theme", "light")
+
+def change_theme():
+    # NOTE: The theme's real name is azure-<mode>
+    if root.tk.call("ttk::style", "theme", "use") == "azure-dark":
+        # Set light theme
+        root.tk.call("set_theme", "light")
+    else:
+        # Set dark theme
+        root.tk.call("set_theme", "dark")
+"""
 class VentanaPrincipal(tk.Tk):
     def __init__(self):
         super().__init__()
         
-        self.title("Aplicación")
+        self.title("Proyecto TimeWise")
         self.geometry("800x600")
-        
-        estilo = ttk.Style()
-        estilo.theme_use('clam')
-        estilo.configure('.', background='#f0f0f0')
 
-        """
-        #estilo.configure("TButton", background="red")
-        #estilo.configure("Estilo.TButton", foreground="white", background="blue", font=("Helvetica", 12))
-        """
+        self.tk.call("source", "../azure.tcl")
+        self.tk.call("set_theme", "light")
 
         # Crear botones
         btn_opcion1 = ttk.Button(self, text="Opción 1", command=self.opcion1)
         btn_opcion2 = ttk.Button(self, text="Opción 2", command=self.opcion2)
         btn_exit = ttk.Button(self, text="Salida", command=self.Salida)
+        theme_button = ttk.Button(self, text="Cambiar tema", command=self.change_theme)
         
         # Ubicar botones
         btn_opcion1.pack(pady=10)
         btn_opcion2.pack(pady=10)
         btn_exit.pack(pady=10)
+        theme_button.pack(side="left", anchor="sw", padx=20, pady=20)
 
         self.geometry_pos = self.geometry()
         
@@ -98,7 +82,7 @@ class VentanaPrincipal(tk.Tk):
         
     def opcion2(self):
         self.ocultar()
-        Opcion1(self, self.geometry_pos)
+        Opcion2(self, self.geometry_pos)
 
     def Salida(self):
         exit()
@@ -106,6 +90,15 @@ class VentanaPrincipal(tk.Tk):
     def ocultar(self):
         self.geometry_pos = self.geometry()
         self.withdraw()
+    def change_theme(self):
+        # NOTE: The theme's real name is azure-<mode>
+        if self.tk.call("ttk::style", "theme", "use") == "azure-dark":
+            # Set light theme
+            self.tk.call("set_theme", "light")
+        else:
+            # Set dark theme
+            self.tk.call("set_theme", "dark")
+
 
 class Opcion1(tk.Toplevel):
     def __init__(self, parent, geometry_pos):
@@ -119,7 +112,7 @@ class Opcion1(tk.Toplevel):
         btn_regresar.pack(pady=10)
         
         # Crear imagen y texto
-        self.imagen = tk.PhotoImage(file='sampletext.png')
+        self.imagen = tk.PhotoImage(file='src\sampletext.png')
         lbl_imagen = tk.Label(self, image=self.imagen)
         lbl_imagen.pack(pady=10)
         lbl_texto = tk.Label(self, text="Texto de la opción 1")
@@ -127,6 +120,7 @@ class Opcion1(tk.Toplevel):
         
         #configurar la geometria de la ventana con la posicion recibida
         self.geometry(geometry_pos)
+        
 
     def regresar(self):
         # Actualizar posición de la ventana principal con la posición actual de la ventana secundaria
@@ -147,7 +141,7 @@ class Opcion2(tk.Toplevel):
         btn_regresar.pack(pady=10)
         
         # Crear imagen y texto
-        self.imagen = tk.PhotoImage(file="sampletext.png")
+        self.imagen = tk.PhotoImage(file="src\sampletext.png")
         lbl_imagen = tk.Label(self, image=self.imagen)
         lbl_imagen.pack(pady=10)
         lbl_texto = tk.Label(self, text="Texto de la opción 2")
@@ -166,3 +160,68 @@ class Opcion2(tk.Toplevel):
 if __name__ == "__main__":
     app = VentanaPrincipal()
     app.mainloop()
+
+"""
+import tkinter as tk
+from tkinter import ttk
+
+root = tk.Tk()
+root.title("Proyecto TimeWise")
+root.geometry("800x600")
+
+# Pack a big frame so, it behaves like the window background
+big_frame = ttk.Frame(root)
+big_frame.pack(fill="both", expand=True)
+
+# Set the initial theme
+root.tk.call("source", "azure.tcl")
+root.tk.call("set_theme", "light")
+
+def change_theme():
+    # NOTE: The theme's real name is azure-<mode>
+    if root.tk.call("ttk::style", "theme", "use") == "azure-dark":
+        # Set light theme
+        root.tk.call("set_theme", "light")
+    else:
+        # Set dark theme
+        root.tk.call("set_theme", "dark")
+
+# Create and pack the buttons
+#button1 = ttk.Button(big_frame, text="Nuevo horario")
+#button1.pack(side="left", padx=20, pady=20)
+
+#button2 = ttk.Button(big_frame, text="Importar Excel")
+#button2.pack(side="left", padx=20, pady=20)
+
+#button3 = ttk.Button(big_frame, text="Exportar horario")
+#button3.pack(side="left", padx=20, pady=20)
+
+#button4 = ttk.Button(big_frame, text="Salir",command=exit)
+#button4.pack(side="left", padx=20, pady=20)
+# Obtener el ancho y la altura de la pantalla
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+# Calcular el ancho del recuadro verde como el 70% del ancho total de la pantalla
+color_box_width = int(screen_width * 0.7)
+
+# Crear el frame principal
+frame = tk.Frame(root, bd=1, relief="solid")
+frame.pack(side="top", fill="both", expand=True)
+
+# Crear la lista de opciones en la izquierda
+options_list = tk.Listbox(frame, bd=0)
+options_list.pack(side="left", fill="both", expand=True)
+
+# Agregar algunos elementos a la lista de opciones
+for item in ["Opción 1", "Opción 2", "Opción 3"]:
+    options_list.insert("end", item)
+
+# Crear el recuadro de color verde en la derecha
+color_box = tk.Canvas(frame, bg="green", width=color_box_width, height=screen_height)
+color_box.pack(side="right", fill="both", expand=True)
+
+theme_button = ttk.Button(big_frame, text="Cambiar tema", command=change_theme)
+theme_button.pack(side="left", anchor="sw", padx=20, pady=20)
+
+root.mainloop()"""

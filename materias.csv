@@ -1,0 +1,21 @@
+Nombre,Codigo de materia,Paralelo,Sala,Creditos academicos,Horas de catedra,Tipo de modalidad,Cupo total de la materia
+Matemáticas,MAT101,A,A7,5,0,,22
+Biología,QUI301,A,A7,2,0,,20
+Química,ING501,A,A5,1,0,,23
+Biología,ING501,A,A4,5,0,,23
+Biología,FIS201,C,A2,3,0,,17
+Física,MAT101,C,A5,1,0,,11
+Química,BIO401,C,,2,0,,13
+Inglés,ING501,C,A4,3,0,,30
+Matemáticas,MAT101,A,A6,4,0,,16
+Inglés,FIS201,C,A1,4,0,,19
+Física,QUI301,B,A3,1,0,,14
+Biología,MAT101,C,A5,1,0,,27
+Inglés,QUI301,B,A2,5,0,,19
+Matemáticas,FIS201,B,A6,4,0,,16
+Química,ING501,C,A7,3,0,,17
+Matemáticas,MAT101,A,,1,0,,16
+Física,BIO401,C,A3,4,0,,28
+Inglés,MAT101,A,A4,2,0,,19
+Inglés,BIO401,C,A7,1,0,,17
+Matemáticas,ING501,A,A6,3,0,,11
