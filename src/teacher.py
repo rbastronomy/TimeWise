@@ -230,3 +230,23 @@ root.bind('<Button-3>', show_context_menu)
 # Iniciar el bucle de eventos de la ventana
 root.mainloop()
 """
+
+class Teacher():
+    def __init__(self, name, rut, birthdate, email):
+        self.__Name = name
+        self.__Rut = rut
+        self.__BirthDate = birthdate
+        self.__Email = email
+
+    def GetName(self):
+        return self.__Name
+    def GetRut(self):
+        return self.__Rut
+    def GetBirthDate(self):
+        return self.__BirthDate
+    def GetEmail(self):
+        return self.__Email
+    
+
+
+

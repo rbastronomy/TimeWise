@@ -162,14 +162,7 @@ btn_bloquear_horarios.pack()
 # Ejecutar loop de la ventana
 root.mainloop()
 """
-
-import tkinter as tk
-from tkinter import filedialog, messagebox
-import pdfkit
-import pandas as pd
-from openpyxl import load_workbook
-from datetime import datetime, timedelta
-
+"""
 # Variables globales para los datos y los horarios asignados
 datos = None
 horarios_asignados = None
@@ -370,7 +363,7 @@ bloquear_horarios_button.pack(padx=10, pady=5)
 estado_label = tk.Label(root, text="Estado: Esperando acción...")
 estado_label.pack(padx=10, pady=5)
 
-"""
+
 cargar_datos_button.pack(padx=10, pady=10)
 
 asignar_horarios_button = tk.Button(root, text="Asignar horarios", command=asignar_horarios)
@@ -387,7 +380,6 @@ datos_label.pack(padx=10, pady=10)
 
 horarios_label = tk.Label(root, text="Horarios asignados: No")
 horarios_label.pack(padx=10, pady=10)
-"""
 
 #def actualizar_etiquetas():
  #   global datos, horarios_asignados
@@ -396,4 +388,87 @@ horarios_label.pack(padx=10, pady=10)
     #root.after(100, actualizar_etiquetas)
     
 #actualizar_etiquetas()
-root.mainloop()
+root.mainloop()"""
+
+import tkinter as tk
+from tkinter import filedialog, messagebox
+#import pdfkit
+import pandas as pd
+from openpyxl import load_workbook
+from datetime import datetime, timedelta
+from teacher import Teacher as tch
+from studient import Studient as std
+from classroom import Classroom as csr
+
+# Función para cargar datos desde archivos CSV o XLSX
+def CargarDatos():
+    global datos
+    # Abrir cuadro de diálogo para seleccionar archivo
+    archivo = filedialog.askopenfilename(filetypes=[("Archivos CSV", "*.csv"), ("Archivos XLSX", "*.xlsx")])
+    if not archivo:
+        return
+    
+    # Cargar datos del archivo seleccionado en un DataFrame de Pandas
+    try:
+        datos = pd.read_csv(archivo) if archivo.endswith(".csv") else pd.read_excel(archivo)
+    except Exception as e:
+        messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
+        return
+    
+    # Mostrar mensaje de confirmación
+    #messagebox.showinfo("Información", "Datos cargados correctamente")
+
+CargarDatos()
+#print(datos)
+#def cargar_profesor():
+#    if
+#cargar_profesor()
+#profe = []
+#profe.append(tch("A", "123456-7", "12-10-1999", "holam@unap.cl"))
+#print(profe[0].GetRut())
+def CargarProfesor():
+    arr = []
+    #print(datos.columns.tolist())
+    try:
+        for index, fila in datos.iterrows():
+            arr.append(tch(fila['Profesor'], fila['RUT'], fila['Fecha de nacimiento'], fila['Email']))
+            print(f"Teacher {index}: {arr[index].GetName()}, {arr[index].GetRut()}, {arr[index].GetBirthDate()}, {arr[index].GetEmail()}")
+        return arr
+    except Exception as e:
+        print("ARCHIVO CSV O XLSX NO CORRESPONDE PARA ESTA CLASE!")
+        #messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
+        #return
+
+def CargarEstudiante():
+    arr = []
+    #print(datos.columns.tolist())
+    try:
+        for index, fila in datos.iterrows():
+            arr.append(std(fila['Alumno'], fila['RUT'], fila['Fecha de nacimiento'], fila['Email'], fila['Carrera'], fila['Semestre']))
+            print(f"Studient {index}: {arr[index].GetName()}, {arr[index].GetRut()}, {arr[index].GetBirthDate()}, {arr[index].GetEmail()}, {arr[index].GetCareer()}, {arr[index].GetSemester()}")
+        return arr
+    except Exception as e:
+        #print("ARCHIVO CSV O XLSX NO CORRESPONDE PARA ESTA CLASE!")
+        messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
+        return
+
+def CargarSalas():
+    arr = []
+    #print(datos.columns.tolist())
+    
+    try:
+        for index, fila in datos.iterrows():
+            arr.append(csr(fila['Codigo sala'], fila['Capacidad']))
+            print(f"Classroom {index}: {arr[index].GetCode()}, {arr[index].GetCapacity()}")
+        return arr
+    except Exception as e:
+        #print("ARCHIVO CSV O XLSX NO CORRESPONDE PARA ESTA CLASE!")
+        messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
+        return
+
+
+        
+arr2 = CargarSalas()
+#arr2 = CargarProfesor()
+#print(arr2[0].GetName())
+#print(arr2[1].GetName())
