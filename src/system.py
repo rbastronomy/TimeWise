@@ -466,6 +466,18 @@ def CargarSalas():
         messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
         return
 
+def CargarMaterias():
+    arr = []
+    #print(datos.columns.tolist())    
+    try:
+        for index, fila in datos.iterrows():
+            arr.append(csr(fila['Codigo sala'], fila['Capacidad']))
+            print(f"Classroom {index}: {arr[index].GetCode()}, {arr[index].GetCapacity()}")
+        return arr
+    except Exception as e:
+        #print("ARCHIVO CSV O XLSX NO CORRESPONDE PARA ESTA CLASE!")
+        messagebox.showerror("Error", f"No se pudo cargar el archivo: {e}")
+        return
 
         
 arr2 = CargarSalas()
